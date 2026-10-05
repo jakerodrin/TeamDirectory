@@ -1,21 +1,27 @@
 function About() {
   return (
     <section className="mx-auto max-w-2xl">
-      <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100">About</h1>
-      <div className="mt-4 space-y-4 text-slate-600 dark:text-slate-300">
-        <p>
-          <strong className="text-slate-900 dark:text-slate-100">Team Directory</strong> is a
-          small React app for browsing a team of people. It was built with Vite,
-          React Router and Tailwind CSS.
-        </p>
-        <ul className="list-inside list-disc space-y-1">
-          <li>React Router for client-side navigation (no page reloads)</li>
-          <li>Reusable components that receive data through props</li>
-          <li>useState for search, favorites and dark mode</li>
-          <li>useEffect for loading data and updating the document title</li>
-          <li>100% local data — no API calls</li>
-        </ul>
-      </div>
+      <h1 className="text-2xl font-semibold tracking-tight text-fg">About</h1>
+      <p className="mt-4 text-sm leading-relaxed text-muted">
+        Team Directory is a small React app for browsing a team of people. It
+        was built with Vite, React Router and Tailwind CSS, using only local
+        data.
+      </p>
+      <ul className="mt-5 space-y-2 text-sm text-muted">
+        {[
+          'React Router for client-side navigation (no page reloads)',
+          'Reusable components that receive data through props',
+          'useState for search, favorites and dark mode',
+          'useEffect for loading data and updating the document title',
+        ].map((item) => (
+          <li key={item} className="flex gap-2.5">
+            <span aria-hidden="true" className="text-fg">
+              &ndash;
+            </span>
+            {item}
+          </li>
+        ))}
+      </ul>
     </section>
   )
 }

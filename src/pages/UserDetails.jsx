@@ -5,6 +5,8 @@ import Loader from '../components/Loader'
 import ErrorMessage from '../components/ErrorMessage'
 import Button from '../components/Button'
 
+const FIND_DELAY_MS = 500
+
 /**
  * Details for a single user.
  * - useParams reads the :id from the URL.
@@ -27,7 +29,7 @@ function UserDetails({ favorites, onToggleFavorite }) {
     const timer = setTimeout(() => {
       const found = users.find((candidate) => candidate.id === Number(id))
       setLoaded({ id, user: found ?? null })
-    }, 500)
+    }, FIND_DELAY_MS)
 
     return () => clearTimeout(timer)
   }, [id])
@@ -50,40 +52,39 @@ function UserDetails({ favorites, onToggleFavorite }) {
   }
 
   const user = loaded.user
-
   const isFavorite = favorites.includes(user.id)
 
   return (
     <section className="mx-auto max-w-md">
       <Link
         to="/users"
-        className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-400"
+        className="text-sm text-muted transition-colors hover:text-fg"
       >
-        ← Back to Users
+        Back to users
       </Link>
 
-      <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-sm dark:border-slate-700 dark:bg-slate-800">
-        <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-blue-100 text-3xl font-bold text-blue-700 dark:bg-blue-900 dark:text-blue-200">
+      <div className="mt-4 rounded-lg border border-border bg-surface p-8 text-center">
+        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-border text-xl font-semibold text-fg">
           {user.name.charAt(0)}
         </div>
-        <h1 className="mt-4 text-2xl font-bold text-slate-900 dark:text-slate-100">
+        <h1 className="mt-4 text-xl font-semibold tracking-tight text-fg">
           {user.name}
         </h1>
-        <dl className="mt-6 space-y-3 text-left">
-          <div>
-            <dt className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Email</dt>
-            <dd className="text-slate-800 dark:text-slate-200">{user.email}</dd>
-          </div>
-          <div>
-            <dt className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Company</dt>
-            <dd className="text-slate-800 dark:text-slate-200">{user.company}</dd>
-          </div>
-          <div>
-            <dt className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Role</dt>
-            <dd className="text-slate-800 dark:text-slate-200">{user.role}</dd>
-          </div>
+
+        <dl className="mt-6 space-y-4 text-left">
+          {[
+            { term: 'Email', value: user.email },
+            { term: 'Company', value: user.company },
+            { term: 'Role', value: user.role },
+          ].map(({ term, value }) => (
+            <div key={term} className="flex justify-between gap-6">
+              <dt className="text-sm text-muted">{term}</dt>
+              <dd className="text-sm font-medium text-fg">{value}</dd>
+            </div>
+          ))}
         </dl>
-        <div className="mt-6 flex justify-center gap-3">
+
+        <div className="mt-6 border-t border-border pt-5">
           <Button
             onClick={() => onToggleFavorite(user.id)}
             variant={isFavorite ? 'danger' : 'primary'}

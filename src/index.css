@@ -1,5 +1,45 @@
-﻿@import "tailwindcss";
+@import "tailwindcss";
 
-/* Enable class-based dark mode: elements inside an ancestor with the */
-/* "dark" class get the dark: variants applied. */
+/* Class-based dark mode: elements inside an ancestor with the "dark" class
+   get the dark: variants applied. */
 @custom-variant dark (&:where(.dark, .dark *));
+
+/* Theme tokens — the single source of truth for every color in the app.
+   No component hardcodes a color; they all use these semantic tokens. */
+:root {
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --fg: #18181b;
+  --muted: #71717a;
+  --border: #e4e4e7;
+  --accent: #18181b;
+  --accent-fg: #fafafa;
+  --danger: #dc2626;
+}
+
+.dark {
+  --bg: #0a0a0a;
+  --surface: #141416;
+  --fg: #fafafa;
+  --muted: #a1a1aa;
+  --border: #26262a;
+  --accent: #fafafa;
+  --accent-fg: #18181b;
+  --danger: #f87171;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-danger: var(--danger);
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}

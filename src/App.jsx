@@ -11,8 +11,8 @@ import NotFound from './pages/NotFound'
  * App root:
  * - Holds the shared state: favorites (array of user ids) and dark mode.
  * - Wraps everything in BrowserRouter and declares all routes.
- * - Toggling dark mode adds/removes the "dark" class, which switches every
- *   dark: variant in the app.
+ * - Toggling dark mode adds/removes the "dark" class, which flips the theme
+ *   tokens defined in index.css.
  */
 function App() {
   const [favorites, setFavorites] = useState([])
@@ -28,16 +28,16 @@ function App() {
 
   return (
     <BrowserRouter>
-      {/* The "dark" class activates Tailwind's dark: variants app-wide. */}
+      {/* The "dark" class activates the dark theme tokens app-wide. */}
       <div className={isDark ? 'dark' : undefined}>
-        <div className="min-h-screen bg-slate-50 text-slate-900 transition-colors dark:bg-slate-900 dark:text-slate-100">
+        <div className="min-h-screen bg-bg text-fg antialiased transition-colors">
           <Navbar
             favoritesCount={favorites.length}
             isDark={isDark}
             onToggleDark={() => setIsDark((dark) => !dark)}
           />
 
-          <main className="mx-auto max-w-4xl px-4 py-8">
+          <main className="mx-auto max-w-4xl px-4 py-10">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route

@@ -4,9 +4,11 @@ import UserCard from '../components/UserCard'
 import Loader from '../components/Loader'
 import ErrorMessage from '../components/ErrorMessage'
 
+const SIMULATED_LOAD_MS = 1000
+
 /**
  * Lists all users.
- * - useEffect (empty dependency array) simulates fetching with a 1s setTimeout.
+ * - useEffect (empty dependency array) simulates fetching with a delay.
  * - Controlled search input filters users by name as you type.
  * - Document title shows how many users are currently displayed.
  */
@@ -15,12 +17,12 @@ function Users({ favorites, onToggleFavorite }) {
   const [isLoading, setIsLoading] = useState(true)
   const [search, setSearch] = useState('')
 
-  // Load users once, after a 1-second simulated delay.
+  // Load users once, after a short simulated delay.
   useEffect(() => {
     const timer = setTimeout(() => {
       setUsers(allUsers)
       setIsLoading(false)
-    }, 1000)
+    }, SIMULATED_LOAD_MS)
 
     // Cleanup so the timer never fires after the component unmounts.
     return () => clearTimeout(timer)
@@ -41,14 +43,14 @@ function Users({ favorites, onToggleFavorite }) {
 
   return (
     <section>
-      <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100">Users</h1>
+      <h1 className="text-2xl font-semibold tracking-tight text-fg">Users</h1>
 
       <input
         type="text"
         value={search}
         onChange={(event) => setSearch(event.target.value)}
-        placeholder="Search users by name..."
-        className="mt-4 w-full rounded-lg border border-slate-300 bg-white px-4 py-2 text-slate-900 placeholder:text-slate-400 focus:border-blue-500 focus:outline-none dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100"
+        placeholder="Search by name"
+        className="mt-5 w-full rounded-md border border-border bg-surface px-3.5 py-2 text-sm text-fg placeholder:text-muted focus:border-fg focus:outline-none"
       />
 
       {filteredUsers.length === 0 ? (

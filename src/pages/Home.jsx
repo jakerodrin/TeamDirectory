@@ -5,18 +5,24 @@ function Home() {
   const navigate = useNavigate()
 
   return (
-    <section className="text-center">
-      <h1 className="text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
-        Welcome to the Team Directory
+    <section className="py-16 text-center">
+      <h1 className="text-4xl font-semibold tracking-tight text-fg">
+        Team Directory
       </h1>
-      <p className="mx-auto mt-4 max-w-xl text-slate-600 dark:text-slate-300">
-        Browse your teammates, search them by name, mark your favorites and open
-        their details — all stored locally, no API needed.
+      <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-muted">
+        Browse your teammates, search them by name, mark your favorites and
+        open their details.
       </p>
-      <div className="mt-8 flex justify-center gap-3">
-        <Button label="View all users" onClick={() => navigate('/users')} />
-        <Button label="Learn about this app" onClick={() => navigate('/about')} variant="danger" />
+      <div className="mt-8 flex justify-center">
+        <Button label="View users" onClick={() => navigate('/users')} />
       </div>
+      <button
+        type="button"
+        onClick={() => navigate('/about')}
+        className="mt-4 cursor-pointer text-sm text-muted underline decoration-border underline-offset-4 transition-colors hover:text-fg"
+      >
+        About this app
+      </button>
     </section>
   )
 }

@@ -2,16 +2,14 @@ import { Link } from 'react-router-dom'
 
 function NotFound() {
   return (
-    <section className="py-16 text-center">
-      <h1 className="text-6xl font-bold text-slate-900 dark:text-slate-100">404</h1>
-      <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
-        Oops! This page does not exist.
-      </p>
+    <section className="py-24 text-center">
+      <h1 className="text-5xl font-semibold tracking-tight text-fg">404</h1>
+      <p className="mt-3 text-sm text-muted">This page does not exist.</p>
       <Link
         to="/"
-        className="mt-6 inline-block rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+        className="mt-6 inline-block text-sm font-medium text-fg underline decoration-border underline-offset-4 transition-colors hover:decoration-fg"
       >
-        Go back home
+        Back to home
       </Link>
     </section>
   )

@@ -8,7 +8,8 @@ A React (Vite) + Tailwind CSS app for browsing a team directory with search, fav
 - **Reusable components** that get all their data through props: `Navbar`, `UserCard`, `Button`, `Loader`, `ErrorMessage` (in `src/components/`).
 - **Search**: a controlled input on the Users page filters users by name as you type (`useState`).
 - **Favorites**: every user card has a favorite button; the count shows in the Navbar as `Favorites: n`.
-- **Dark / Light mode**: a toggle button in the Navbar switches the app's colors.
+- **Dark / Light mode**: an icon toggle in the Navbar switches the whole theme.
+- **Minimal theme**: every color is a semantic CSS variable (`bg`, `surface`, `fg`, `muted`, `border`, `accent`, `danger`) defined once in `src/index.css` — no component hardcodes a color.
 - **Simulated loading**: the Users page shows a `Loader` for 1 second before the users appear.
 - **Document titles**: `Users (n)` on the Users page (n = number of displayed users) and the user's name on the Details page.
 
@@ -29,11 +30,11 @@ src/
 │   └── users.js  # local array of 10 users (id, name, email, company, role)
 ├── pages/        # Home, Users, UserDetails, About, NotFound
 ├── App.jsx       # routes + shared state (favorites, dark mode)
-├── index.css     # Tailwind CSS entry + class-based dark mode
+├── index.css     # Tailwind entry + theme tokens + class-based dark mode
 └── main.jsx
 ```
 
-## Git setup (GitHub repo with 4 commits)
+## Git setup (GitHub repo)
 
 ```bash
 git init
@@ -45,6 +46,8 @@ git add .
 git commit -m "Add pages and React Router routes (Home, Users, UserDetails, About, NotFound)"
 git add .
 git commit -m "Add README with project docs and code explanations"
+git add .
+git commit -m "Simplify UI: replace emojis with SVG icons and centralize theme colors as CSS variables"
 
 # Connect to GitHub and push (create the empty repo on github.com first)
 git branch -M main
@@ -56,7 +59,7 @@ git push -u origin main
 
 ### Component example: `Button`
 
-`src/components/Button.jsx` is a small reusable component that accepts props — `label`, `onClick` and `variant` — and also renders whatever is passed as `children`. The `variant` prop is `"primary"` (blue) by default or `"danger"` (red), and a ternary picks the Tailwind classes accordingly. Because everything comes from props, the same component is reused in three places with different props: the Home page buttons (`label` + `onClick`), the favorite toggle in `UserCard` (which switches from `primary` to `danger` once a user is favorited), and the dark-mode toggle in the `Navbar` (which only uses `children` to show the 🌙/☀️ icon and text).
+`src/components/Button.jsx` is a small reusable component that accepts props — `label`, `onClick`, `variant` and `title` — and also renders whatever is passed as `children`. The `variant` prop is `"primary"` by default or `"danger"`, and a ternary picks the semantic theme classes accordingly. Because everything comes from props, the same component is reused in three places with different props: the Home page button (`label` + `onClick`), the icon-only favorite toggle in `UserCard` (which switches from `primary` to `danger` once a user is favorited), and the dark-mode toggle in the `Navbar` (which renders only its `children` — a sun/moon SVG icon — using `title` for accessibility).
 
 ### Hook example: the `useEffect` that loads users (`src/pages/Users.jsx`)
 
@@ -65,7 +68,7 @@ useEffect(() => {
   const timer = setTimeout(() => {
     setUsers(allUsers)
     setIsLoading(false)
-  }, 1000)
+  }, SIMULATED_LOAD_MS)
 
   return () => clearTimeout(timer)
 }, [])
