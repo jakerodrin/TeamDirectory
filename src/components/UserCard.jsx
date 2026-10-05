@@ -42,7 +42,7 @@ function UserCard({ id, name, email, company, isFavorite, onToggleFavorite }) {
         </Button>
         <Link
           to={`/users/${id}`}
-          className="text-sm font-medium text-fg transition-opacity hover:opacity-70"
+          className="text-sm font-medium text-accent transition-opacity hover:opacity-70"
         >
           Details
         </Link>

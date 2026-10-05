@@ -58,7 +58,7 @@ function UserDetails({ favorites, onToggleFavorite }) {
     <section className="mx-auto max-w-md">
       <Link
         to="/users"
-        className="text-sm text-muted transition-colors hover:text-fg"
+        className="text-sm text-accent transition-opacity hover:opacity-70"
       >
         Back to users
       </Link>

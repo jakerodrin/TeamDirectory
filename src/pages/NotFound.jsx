@@ -7,7 +7,7 @@ function NotFound() {
       <p className="mt-3 text-sm text-muted">This page does not exist.</p>
       <Link
         to="/"
-        className="mt-6 inline-block text-sm font-medium text-fg underline decoration-border underline-offset-4 transition-colors hover:decoration-fg"
+        className="mt-6 inline-block text-sm font-medium text-accent underline decoration-border underline-offset-4 transition-opacity hover:opacity-70"
       >
         Back to home
       </Link>

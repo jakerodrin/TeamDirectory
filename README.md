@@ -9,7 +9,7 @@ A React (Vite) + Tailwind CSS app for browsing a team directory with search, fav
 - **Search**: a controlled input on the Users page filters users by name as you type (`useState`).
 - **Favorites**: every user card has a favorite button; the count shows in the Navbar as `Favorites: n`.
 - **Dark / Light mode**: an icon toggle in the Navbar switches the whole theme.
-- **Minimal theme**: every color is a semantic CSS variable (`bg`, `surface`, `fg`, `muted`, `border`, `accent`, `danger`) defined once in `src/index.css` — no component hardcodes a color.
+- **Soft, eye-friendly theme**: every color is a semantic CSS variable (`bg`, `surface`, `fg`, `muted`, `border`, `accent`, `danger`) defined once in `src/index.css` — slate text instead of pure black, gentle cool backgrounds and a calm indigo accent, in both light and dark mode. No component hardcodes a color.
 - **Simulated loading**: the Users page shows a `Loader` for 1 second before the users appear.
 - **Document titles**: `Users (n)` on the Users page (n = number of displayed users) and the user's name on the Details page.
 
@@ -47,11 +47,11 @@ git commit -m "Add pages and React Router routes (Home, Users, UserDetails, Abou
 git add .
 git commit -m "Add README with project docs and code explanations"
 git add .
-git commit -m "Simplify UI: replace emojis with SVG icons and centralize theme colors as CSS variables"
+git commit -m "Soften the theme: eye-friendly slate/indigo palette via CSS variables"
 
-# Connect to GitHub and push (create the empty repo on github.com first)
+# Connect to GitHub and push
 git branch -M main
-git remote add origin https://github.com/<your-username>/team-directory.git
+git remote add origin https://github.com/jakerodrin/TeamDirectory.git
 git push -u origin main
 ```
 
